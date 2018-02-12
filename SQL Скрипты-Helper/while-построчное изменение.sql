@@ -1,5 +1,7 @@
 declare
-    @cnt int while 1=1
+    @cnt int;
+
+while 1=1
 begin
     
     select --*
@@ -22,5 +24,6 @@ begin
            
            --order by TUR_DATE
            
-           set @cnt = @@rowcount if @cnt<=0 break
+	set @cnt = @@rowcount;
+	if @cnt<=0 break
 end
