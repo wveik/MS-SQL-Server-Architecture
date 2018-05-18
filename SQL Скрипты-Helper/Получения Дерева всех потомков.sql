@@ -18,3 +18,7 @@ with MyTable as (
 )
 
 SELECT * FROM MyTable
+
+
+--SELECT * FROM MyTable
+--WHERE LEVEL=2
