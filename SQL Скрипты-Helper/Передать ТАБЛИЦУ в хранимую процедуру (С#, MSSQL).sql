@@ -41,7 +41,7 @@ private void button1_Click(object sender, EventArgs e)
                 }
                 data.Rows.Add(row);
             }
-            using (var conn = new SqlConnection("Data Source=server-052;Initial Catalog=UNIVERS;User ID=Fast_r;Password=fast2018"))
+            using (var conn = new SqlConnection("Data Source=server-052;Initial Catalog=UNIVERS;User ID=test;Password=test"))
             {
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
