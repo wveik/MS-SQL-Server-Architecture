@@ -5,6 +5,7 @@ WIHT MyProducts AS (
 	FROM ORDERS
 )
 
-SELECT *, NUM1 - NUM2
+SELECT --*, NUM1 - NUM2
+AVG(Price)
 FROM MyProducts
 WHERE ABS(NUM1 - NUM2) <= 2
