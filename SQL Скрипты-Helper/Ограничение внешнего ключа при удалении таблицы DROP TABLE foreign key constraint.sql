@@ -1,3 +1,8 @@
+SELECT o.name, * 
+FROM sys.foreign_keys f
+inner join sys.objects o on o.object_id=f.parent_object_id
+WHERE f.referenced_object_id = object_id('cfg.treeoption')
+
 SELECT * 
 FROM sys.foreign_keys
 WHERE referenced_object_id = object_id('[cfg].[tree]')
