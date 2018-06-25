@@ -60,6 +60,8 @@ from
 ) t
 --order by ColumnId
 
+set @Result = @Result + 'Table("' + @TableName + '");'
+
 set @Result = @Result  + '
 }' +
 '
