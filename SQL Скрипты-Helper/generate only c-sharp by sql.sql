@@ -1,5 +1,7 @@
-declare @TableName sysname = 'REGULAR_TOUR_FLIGHT_PARAM'
-declare @Result varchar(max) = 'public class ' + @TableName + '
+declare @TableName sysname = 'cfg.card'
+declare @Result varchar(max) = '
+[Serializable]
+public class ' + @TableName + ' : DomainObject
 {'
 
 select @Result = @Result + '
