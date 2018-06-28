@@ -11,7 +11,7 @@ public ' + UPPER(LEFT(@TableName,1))+LOWER(SUBSTRING(@TableName,2,LEN(@TableName
 ''
 
 select @Result = @Result + '
-    Map(x => x. ' + ColumnName + ' );
+    Map(x => x.' + ColumnName + ').Column("' + ColumnName + '");
 '
 from
 (
@@ -61,13 +61,17 @@ from
 ) t
 --order by ColumnId
 
-set @Result = @Result + 'Table("' + @TableName + '");
+set @Result = @Result + '    Table("' + @TableName + '");
 '
-set @Result = @Result + 'Schema("' + @Scheme + '");'
+set @Result = @Result + '    Schema("' + @Scheme + '");'
 
 set @Result = @Result  + '
 }' +
 '
-}'
+}
+/*Id(x => x.Id)
+				.Column("carddetailid")
+				.GeneratedBy.Identity();*/
+'
 
 print @Result
