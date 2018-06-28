@@ -1,7 +1,8 @@
-declare @TableName sysname = 'cfg.card'
+declare @Scheme sysname = 'cfg'
+declare @TableName sysname = 'card'
 declare @Result varchar(max) = '
 [Serializable]
-public class ' + @TableName + ' : DomainObject
+public class ' + UPPER(LEFT(@TableName,1))+LOWER(SUBSTRING(@TableName,2,LEN(@TableName))) + ' : DomainObject
 {'
 
 select @Result = @Result + '
@@ -51,7 +52,7 @@ from
     from sys.columns col
         join sys.types typ on
             col.system_type_id = typ.system_type_id AND col.user_type_id = typ.user_type_id
-    where object_id = object_id(@TableName)
+    where object_id = object_id(@Scheme+'.'+@TableName)
 ) t
 --order by ColumnId
 
