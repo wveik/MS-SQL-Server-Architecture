@@ -1,11 +1,12 @@
-declare @TableName sysname = 'REGULAR_TOUR_FLIGHT_PARAM'
+declare @Scheme sysname = 'cfg'
+declare @TableName sysname = 'card'
 declare @TableNameMap varchar(max)
 set @TableNameMap = @TableName + 'Map'
-declare @Result varchar(max) = 'public class ' + @TableNameMap + ' : ClassMap<' + @TableName +  '>' + '
+declare @Result varchar(max) = 'public class ' + UPPER(LEFT(@TableName,1))+LOWER(SUBSTRING(@TableName,2,LEN(@TableName))) + ' : ClassMap<' + @TableName +  '>' + '
 {'
 
 + ' 
-public ' + @TableNameMap + '() {' +
+public ' + UPPER(LEFT(@TableName,1))+LOWER(SUBSTRING(@TableName,2,LEN(@TableName))) + '() {' +
 
 ''
 
@@ -56,11 +57,13 @@ from
     from sys.columns col
         join sys.types typ on
             col.system_type_id = typ.system_type_id AND col.user_type_id = typ.user_type_id
-    where object_id = object_id(@TableName)
+    where object_id = object_id(@Scheme+'.'+@TableName)
 ) t
 --order by ColumnId
 
-set @Result = @Result + 'Table("' + @TableName + '");'
+set @Result = @Result + 'Table("' + @TableName + '");
+'
+set @Result = @Result + 'Schema("' + @Scheme + '");'
 
 set @Result = @Result  + '
 }' +
