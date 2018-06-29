@@ -2,7 +2,7 @@ declare @Scheme sysname = 'cfg'
 declare @TableName sysname = 'card'
 declare @TableNameMap varchar(max)
 set @TableNameMap = @TableName + 'Map'
-declare @Result varchar(max) = 'public class ' + UPPER(LEFT(@TableName,1))+LOWER(SUBSTRING(@TableName,2,LEN(@TableName))) + ' : ClassMap<' + UPPER(LEFT(@TableName,1))+LOWER(SUBSTRING(@TableName,2,LEN(@TableName))) +  '>' + '
+declare @Result varchar(max) = 'public class ' + UPPER(LEFT(@TableName,1))+LOWER(SUBSTRING(@TableName,2,LEN(@TableName))) + 'Map : ClassMap<' + UPPER(LEFT(@TableName,1))+LOWER(SUBSTRING(@TableName,2,LEN(@TableName))) +  '>' + '
 {'
 
 + ' 
