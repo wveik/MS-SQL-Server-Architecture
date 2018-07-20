@@ -10,5 +10,15 @@ FROM
                 ORDER BY ST1.treeid_r
                 FOR XML PATH ('')
             ) treenode
-        From cfg.treenode ST2
+        FROM cfg.treenode ST2
     ) [Main]
+                                                  
+
+
+SELECT t.treeid,
+	cols = STUFF((
+		SELECT ', ' + t2.treenodecode
+		FROM cfg.treenode t2
+		WHERE t2.treeid_r=t.treeid
+		FOR XML PATH('')), 1, 2, '')
+FROM cfg.tree t;
